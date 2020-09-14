@@ -10,12 +10,13 @@ services:
         volumes: 
             - ./nowruzWebsite:/nowruzWebsite:Z
         command: >
-         sh -c "python3.7 manage.py runserver 0.0.0.0:8000"
          sh -c "python3.7 manage.py wait_for_db &&
-         python3.7 manage.py migrate &&"
+                python3.7 manage.py migrate &&
+                python3.7 manage.py runserver 0.0.0.0:8000"
+
         environment:
             - DB_HOST=db
-            - DB_NAME=app
+            - DB_NAME=nowruz
             - DB_USER=postgres
             - DB_PASS=supersecretpassword
         depends_on: 
